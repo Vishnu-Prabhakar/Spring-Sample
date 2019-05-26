@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springbootmysql.constants.ExceptionMessage;
+import com.example.springbootmysql.exception.NoDataFoundException;
 import com.example.springbootmysql.model.Employee;
 import com.example.springbootmysql.repository.EmployeeRepository;
 
@@ -19,7 +21,10 @@ public class EmployeeService {
 	}
 	
 	public List<Employee> getAllEmployee(){
-		return (List<Employee>) repository.findAll();
+		List<Employee> result = (List<Employee>) repository.findAll();
+		if(result == null || result.isEmpty())
+			throw new NoDataFoundException(ExceptionMessage.NO_DATA_FOUND_EXCEPTION);
+		return result;
 	}
 	
 	
