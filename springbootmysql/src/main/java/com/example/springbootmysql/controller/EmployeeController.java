@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springbootmysql.annotation.Secure;
 import com.example.springbootmysql.model.Employee;
 import com.example.springbootmysql.service.EmployeeService;
 
@@ -25,7 +27,8 @@ public class EmployeeController {
 	}
 	
 	@GetMapping(value="/getEmployees",produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Employee> getAllEmployee(){
+	@Secure(crudOperation = "READ")
+	public List<Employee> getAllEmployee(@RequestHeader("accessToken") String accessToken){
 		return employeeService.getAllEmployee();
 	}
 
