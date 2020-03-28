@@ -1,6 +1,6 @@
 package com.example.springbootmysql.service;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class EmployeeServiceTest {
 
 	@Test
 	public void givenEmployeeIdWhenGetThenReturnEmployee() {
-		Employee emp =new Employee(1, "Vishnu", 17, "Coimbatore");
+		Employee emp =new Employee(2, "Vishnu", 17, "Coimbatore");
 		Mockito.when(employeeRepository.findById(Mockito.anyInt())).thenReturn(Optional.of(emp));
 		assertNotNull(employeeService.getEmployee(1));
 	}

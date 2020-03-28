@@ -27,6 +27,5 @@ public class Employee {
 	@Column(name="address")
 	String address;
 	
-	
 
 }
