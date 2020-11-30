@@ -12,6 +12,7 @@
 	<artifactId>springbootmysql</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring boot mysql sample</name>
+	<!--packaging>war</packaging--> 
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -70,6 +71,28 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			 <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-war</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>war-inplace</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>inplace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 
